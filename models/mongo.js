@@ -12,7 +12,7 @@
  */
 class Model_CRUD {
   constructor(schema) {
-    this.schema;
+    this.schema = schema;
   }
 
   /**
@@ -46,7 +46,7 @@ class Model_CRUD {
      * @param {object} updateObj
      * @returns {object}
      */
-  update(id, updateObj) {
+  update(_id, updateObj) {
     return this.schema.findByIdAndUpdate(_id, updateObj,{new:true});
   }
 

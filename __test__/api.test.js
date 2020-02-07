@@ -53,7 +53,7 @@ describe('Categoris API test', () => {
           .send({ name: 'testTheCategoryUpdate', display_name: 'need-category', description: 'isnt for sale'})
           .then(results => {
             expect(results.status).toBe(200);
-            expect(results.body.name).toEqual('testTheCategoryUpdate ');
+            expect(results.body.name).toEqual('testTheCategoryUpdate');
           });
       });
   });
