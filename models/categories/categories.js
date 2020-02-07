@@ -1,8 +1,10 @@
-'use strict'; 
+/* eslint-disable no-undef */
+/* eslint-disable strict */
+'use strict';
 
-const schema = require('./categories-schema.js')
-const Model = require('../mongo.js')
+const schema = require('./categories-schema.js');
+const Model = require('../mongo.js');
 
-class Categories extends Model{};
+class Categories extends Model{ }
 
-module.exports = new Categories(schema); 
+module.exports = new Categories(schema);
