@@ -14,7 +14,10 @@ const categoriesSchema = mongoose.Schema({
 },
 {
   toObject: { virtuals: true }, toJson: { virtuals: true }});
-
+/**
+ *virtual modleing for categories
+ */
+//collection/model name
 categoriesSchema.virtual('actualProducts', {
   ref: 'products',
   localField: 'name',
@@ -22,6 +25,9 @@ categoriesSchema.virtual('actualProducts', {
   justOne: false,
 });
 
+/**
+ *the mock(pre) function to retreive the database
+ */
 categoriesSchema.pre('findOne', function () {
   try {
     this.populate('actualProducts');

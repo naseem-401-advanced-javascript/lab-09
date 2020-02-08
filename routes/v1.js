@@ -44,6 +44,9 @@ router.delete('/api/v1/:model/:id', deleteModel);
 
 /**
  * the REST version of GET method
+ *  @param {object} req
+ * @param {object} res
+ * @param {MM} next
  */
 
 function getAllModel(req, res, next) {
@@ -55,6 +58,12 @@ function getAllModel(req, res, next) {
     .catch(next);
 }
 
+/**
+ * retreive one item
+ * @param {object} req
+ * @param {object} res
+ * @param {MM} next
+ */
 function getOneModel(req, res, next) {
   let _id = req.params.id;
   req.model
@@ -67,6 +76,10 @@ function getOneModel(req, res, next) {
 
 /**
  * the REST version of create method
+ * create new item
+ * @param {object} req
+ * @param {object} res
+ * @param {MM} next
  */
 
 function createModel(req, res, next) {
@@ -94,6 +107,10 @@ function updateModel(req, res, next) {
 
 /**
  * the REST version of DELETE method
+ * remove one item
+ * @param {Object} req
+ * @param {object} res
+ * @param {MM} next
  */
 
 function deleteModel(req, res, next) {

@@ -12,11 +12,14 @@ const productsSchema = mongoose.Schema({
   name: { type: String, required: true },
   display_name: { type: String, required: true },
   description: { type: String, required: true },
-  category:{type:String, required:true},
+  category: { type: String, required: true },
 },
 {
   toObject: { virtuals: true }, toJson: { virtuals: true }});
 
+/**
+   *virtual modleing for categories
+   */
 productsSchema.virtual('actualCategory', {
   ref: 'categories',
   localField: 'category',
@@ -24,6 +27,9 @@ productsSchema.virtual('actualCategory', {
   justOne: false,
 });
 
+/**
+ * the mock(pre) function to retreive the database 
+ */
 productsSchema.pre('findOne', function () {
   //methode to executed one after anathor when each middlewre calls(next())
   try {
