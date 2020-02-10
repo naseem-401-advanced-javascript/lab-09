@@ -30,7 +30,7 @@ describe('Categoris API test', () => {
   });
 
   it('get one category item id', () => {
-    let obj = {name: 'testTheCategory', display_name: 'need-category', description: 'isnt for sale'};
+    let obj = { name: 'testTheCategory', display_name: 'need-category', description: 'isnt for sale' };
     return mockRequest.post('/api/v1/categories')
       .send(obj)
       .then(data => {
@@ -45,12 +45,12 @@ describe('Categoris API test', () => {
   });
 
   it('update the category', () => {
-    let obj = {  name: 'testTheCategory', display_name: 'need-category', description: 'isnt for sale'};
+    let obj = { name: 'testTheCategory', display_name: 'need-category', description: 'isnt for sale' };
     return mockRequest.post('/api/v1/categories')
       .send(obj)
       .then(data => {
         return mockRequest.put(`/api/v1/categories/${data.body._id}`)
-          .send({ name: 'testTheCategoryUpdate', display_name: 'need-category', description: 'isnt for sale'})
+          .send({ name: 'testTheCategoryUpdate', display_name: 'need-category', description: 'isnt for sale' })
           .then(results => {
             expect(results.status).toBe(200);
             expect(results.body.name).toEqual('testTheCategoryUpdate');
@@ -59,7 +59,7 @@ describe('Categoris API test', () => {
   });
 
   it('delete one category', () => {
-    let obj = { name: 'testTheCategory', display_name: 'need-category', description: 'isnt for sale'};
+    let obj = { name: 'testTheCategory', display_name: 'need-category', description: 'isnt for sale' };
     return mockRequest.post('/api/v1/categories')
       .send(obj)
       .then(data => {
@@ -80,7 +80,7 @@ describe('Categoris API test', () => {
 
 describe('Products API', () => {
   it('post a new product', () => {
-    let obj = {  name: 'testTheCategory', category: 'need', display_name: 'need-category', description: 'isnt for sale'};
+    let obj = { name: 'testTheCategory', category: 'need', display_name: 'need-category', description: 'isnt for sale' };
     return mockRequest.post('/api/v1/products')
       .send(obj)
       .then(data => {
@@ -101,7 +101,7 @@ describe('Products API', () => {
   });
 
   it('get one product item', () => {
-    let obj = { name: 'testTheCategory', category: 'need', display_name: 'need-category', description: 'isnt for sale'};
+    let obj = { name: 'testTheCategory', category: 'need', display_name: 'need-category', description: 'isnt for sale' };
     return mockRequest.post('/api/v1/products')
       .send(obj)
       .then(data => {
@@ -116,12 +116,12 @@ describe('Products API', () => {
   });
 
   it('update product', () => {
-    let obj = {name: 'testTheCategory', category: 'need', display_name: 'need-category', description: 'isnt for sale'};
+    let obj = { name: 'testTheCategory', category: 'need', display_name: 'need-category', description: 'isnt for sale' };
     return mockRequest.post('/api/v1/products')
       .send(obj)
       .then(data => {
         return mockRequest.put(`/api/v1/products/${data.body._id}`)
-          .send({ name: 'testProductUpdated', category: 'need', display_name: 'need-category', description: 'isnt for sale'})
+          .send({ name: 'testProductUpdated', category: 'need', display_name: 'need-category', description: 'isnt for sale' })
           .then(results => {
             expect(results.status).toBe(200);
             expect(results.body.name).toEqual('testProductUpdated');
@@ -130,7 +130,7 @@ describe('Products API', () => {
   });
 
   it('delete one product', () => {
-    let obj = { name: 'testTheCategory', category: 'need', display_name: 'need-category', description: 'isnt for sale'};
+    let obj = { name: 'testTheCategory', category: 'need', display_name: 'need-category', description: 'isnt for sale' };
     return mockRequest
       .post('/api/v1/products')
       .send(obj)
@@ -145,6 +145,24 @@ describe('Products API', () => {
                 expect(results.body[0]).toBe();
               });
           });
+      });
+  });
+});
+
+describe('Middleware', () => {
+  it('response to 404 errors', () => {
+    return mockRequest
+      .get('/ops')
+      .then((results) => {
+        expect(results.status).toBe(404);
+      });
+  });
+
+  it('response to 500 errors', () => {
+    return mockRequest
+      .get('/random')
+      .then((results) => {
+        expect(results.status).toBe(500);
       });
   });
 });
